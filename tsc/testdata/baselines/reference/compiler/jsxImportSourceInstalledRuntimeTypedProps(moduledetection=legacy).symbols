@@ -1,0 +1,31 @@
+//// [tests/cases/compiler/jsxImportSourceInstalledRuntimeTypedProps.tsx] ////
+
+=== /node_modules/@solidjs/web/jsx-runtime.d.ts ===
+export namespace JSX {
+>JSX : Symbol(JSX, Decl(jsx-runtime.d.ts, 0, 0))
+
+    interface Element {}
+>Element : Symbol(Element, Decl(jsx-runtime.d.ts, 0, 22))
+
+    interface IntrinsicElements {
+>IntrinsicElements : Symbol(IntrinsicElements, Decl(jsx-runtime.d.ts, 1, 24))
+
+        div: { children?: string };
+>div : Symbol(IntrinsicElements.div, Decl(jsx-runtime.d.ts, 2, 33))
+>children : Symbol(children, Decl(jsx-runtime.d.ts, 3, 14))
+    }
+}
+
+=== /script.tsx ===
+const invalidScriptElement = <div children={123} />;
+>invalidScriptElement : Symbol(invalidScriptElement, Decl(script.tsx, 0, 5))
+>div : Symbol(JSX.IntrinsicElements.div, Decl(jsx-runtime.d.ts, 2, 33))
+>children : Symbol(children, Decl(script.tsx, 0, 33))
+
+=== /module.tsx ===
+export {};
+const invalidModuleElement = <div children={123} />;
+>invalidModuleElement : Symbol(invalidModuleElement, Decl(module.tsx, 1, 5))
+>div : Symbol(JSX.IntrinsicElements.div, Decl(jsx-runtime.d.ts, 2, 33))
+>children : Symbol(children, Decl(module.tsx, 1, 33))
+

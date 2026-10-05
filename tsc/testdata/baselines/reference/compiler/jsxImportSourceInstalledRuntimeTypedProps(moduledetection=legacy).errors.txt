@@ -1,0 +1,28 @@
+/module.tsx(2,35): error TS2322: Type 'number' is not assignable to type 'string'.
+/script.tsx(1,35): error TS2322: Type 'number' is not assignable to type 'string'.
+
+
+==== /node_modules/@solidjs/web/package.json (0 errors) ====
+    {"name":"@solidjs/web","version":"0.0.0","exports":{"./jsx-runtime":{"types":"./jsx-runtime.d.ts"}}}
+    
+==== /node_modules/@solidjs/web/jsx-runtime.d.ts (0 errors) ====
+    export namespace JSX {
+        interface Element {}
+        interface IntrinsicElements {
+            div: { children?: string };
+        }
+    }
+    
+==== /script.tsx (1 errors) ====
+    const invalidScriptElement = <div children={123} />;
+                                      ~~~~~~~~
+!!! error TS2322: Type 'number' is not assignable to type 'string'.
+!!! related TS6500 /node_modules/@solidjs/web/jsx-runtime.d.ts:4:16: The expected type comes from property 'children' which is declared here on type '{ children?: string | undefined; }'
+    
+==== /module.tsx (1 errors) ====
+    export {};
+    const invalidModuleElement = <div children={123} />;
+                                      ~~~~~~~~
+!!! error TS2322: Type 'number' is not assignable to type 'string'.
+!!! related TS6500 /node_modules/@solidjs/web/jsx-runtime.d.ts:4:16: The expected type comes from property 'children' which is declared here on type '{ children?: string | undefined; }'
+    
